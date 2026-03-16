@@ -1,4 +1,4 @@
-# UC8 – Generate Bill for Multiple Purchased Items
+# UC9 – Calculate Total Bill Amount Including All Items
 
 inventory = {
     "apple": {"price": 30, "quantity": 100},
@@ -7,6 +7,7 @@ inventory = {
 }
 
 bill = []
+total_bill = 0
 
 print("Available Products:")
 for product, details in inventory.items():
@@ -14,28 +15,23 @@ for product, details in inventory.items():
 
 while True:
 
-    product_name = input("\nEnter product name to purchase: ").lower()
+    product_name = input("\nEnter product name: ").lower()
 
     if product_name in inventory:
 
         quantity = int(input("Enter quantity: "))
+        price = inventory[product_name]["price"]
 
-        if quantity <= inventory[product_name]["quantity"]:
+        total_price = price * quantity
+        total_bill += total_price
 
-            price = inventory[product_name]["price"]
-            total_price = price * quantity
+        bill.append({
+            "product": product_name,
+            "quantity": quantity,
+            "total": total_price
+        })
 
-            bill.append({
-                "product": product_name,
-                "quantity": quantity,
-                "price": price,
-                "total": total_price
-            })
-
-            print("Item added to bill.")
-
-        else:
-            print("Insufficient stock.")
+        print("Item added to bill.")
 
     else:
         print("Product not found.")
@@ -44,7 +40,8 @@ while True:
     if choice != "yes":
         break
 
-
-print("\nGenerated Bill:")
+print("\n----- Bill Summary -----")
 for item in bill:
     print(item["product"], "Qty:", item["quantity"], "Total:", item["total"])
+
+print("\nTotal Bill Amount:", total_bill)
