@@ -1,4 +1,4 @@
-# UC6 – Select Product and Enter Purchase Quantity
+# UC7 – Calculate Item Price Based on Quantity
 
 inventory = {
     "apple": {"price": 30, "quantity": 100},
@@ -16,9 +16,14 @@ if product_name in inventory:
     purchase_qty = int(input("Enter quantity to purchase: "))
 
     if purchase_qty <= inventory[product_name]["quantity"]:
-        print("Product selected:", product_name)
-        print("Quantity to purchase:", purchase_qty)
+        price = inventory[product_name]["price"]
+        total_price = price * purchase_qty
+
+        print("Product:", product_name)
+        print("Unit Price:", price)
+        print("Quantity:", purchase_qty)
+        print("Total Price:", total_price)
     else:
         print("Insufficient stock available.")
 else:
-    print("Product not found in inventory.")
+    print("Product not found.")
