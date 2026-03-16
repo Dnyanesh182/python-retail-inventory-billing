@@ -1,4 +1,4 @@
-# UC9 – Calculate Total Bill Amount Including All Items
+# UC10 – Print Final Bill with Product Details and Total Amount
 
 inventory = {
     "apple": {"price": 30, "quantity": 100},
@@ -28,6 +28,7 @@ while True:
         bill.append({
             "product": product_name,
             "quantity": quantity,
+            "price": price,
             "total": total_price
         })
 
@@ -40,8 +41,13 @@ while True:
     if choice != "yes":
         break
 
-print("\n----- Bill Summary -----")
-for item in bill:
-    print(item["product"], "Qty:", item["quantity"], "Total:", item["total"])
 
-print("\nTotal Bill Amount:", total_bill)
+print("\n========== FINAL BILL ==========")
+print("Product\tQty\tPrice\tTotal")
+
+for item in bill:
+    print(f"{item['product']}\t{item['quantity']}\t{item['price']}\t{item['total']}")
+
+print("--------------------------------")
+print("Total Bill Amount:", total_bill)
+print("================================")
