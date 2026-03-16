@@ -1,4 +1,4 @@
-# UC4 – Remove Product from Inventory
+# UC5 – Display Available Products in Inventory
 
 inventory = {
     "apple": {"price": 30, "quantity": 100},
@@ -6,14 +6,10 @@ inventory = {
     "milk": {"price": 50, "quantity": 40}
 }
 
-product_name = input("Enter product name to remove: ").lower()
+print("Available Products in Inventory:\n")
 
-if product_name in inventory:
-    del inventory[product_name]
-    print("Product removed successfully.")
-else:
-    print("Product not found in inventory.")
-
-print("\nUpdated Inventory:")
 for product, details in inventory.items():
-    print(product, "Price:", details["price"], "Quantity:", details["quantity"])
+    print(f"Product: {product}")
+    print(f"Price: {details['price']}")
+    print(f"Quantity: {details['quantity']}")
+    print("-----------------------")
