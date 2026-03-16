@@ -1,4 +1,4 @@
-# UC7 – Calculate Item Price Based on Quantity
+# UC8 – Generate Bill for Multiple Purchased Items
 
 inventory = {
     "apple": {"price": 30, "quantity": 100},
@@ -6,24 +6,45 @@ inventory = {
     "milk": {"price": 50, "quantity": 40}
 }
 
+bill = []
+
 print("Available Products:")
 for product, details in inventory.items():
     print(product, "Price:", details["price"], "Quantity:", details["quantity"])
 
-product_name = input("\nEnter product name to purchase: ").lower()
+while True:
 
-if product_name in inventory:
-    purchase_qty = int(input("Enter quantity to purchase: "))
+    product_name = input("\nEnter product name to purchase: ").lower()
 
-    if purchase_qty <= inventory[product_name]["quantity"]:
-        price = inventory[product_name]["price"]
-        total_price = price * purchase_qty
+    if product_name in inventory:
 
-        print("Product:", product_name)
-        print("Unit Price:", price)
-        print("Quantity:", purchase_qty)
-        print("Total Price:", total_price)
+        quantity = int(input("Enter quantity: "))
+
+        if quantity <= inventory[product_name]["quantity"]:
+
+            price = inventory[product_name]["price"]
+            total_price = price * quantity
+
+            bill.append({
+                "product": product_name,
+                "quantity": quantity,
+                "price": price,
+                "total": total_price
+            })
+
+            print("Item added to bill.")
+
+        else:
+            print("Insufficient stock.")
+
     else:
-        print("Insufficient stock available.")
-else:
-    print("Product not found.")
+        print("Product not found.")
+
+    choice = input("Add another item? (yes/no): ").lower()
+    if choice != "yes":
+        break
+
+
+print("\nGenerated Bill:")
+for item in bill:
+    print(item["product"], "Qty:", item["quantity"], "Total:", item["total"])
