@@ -1,4 +1,4 @@
-# UC3 – Update Product Quantity in Inventory
+# UC4 – Remove Product from Inventory
 
 inventory = {
     "apple": {"price": 30, "quantity": 100},
@@ -6,12 +6,11 @@ inventory = {
     "milk": {"price": 50, "quantity": 40}
 }
 
-product_name = input("Enter product name to update quantity: ").lower()
+product_name = input("Enter product name to remove: ").lower()
 
 if product_name in inventory:
-    new_quantity = int(input("Enter new quantity: "))
-    inventory[product_name]["quantity"] = new_quantity
-    print("Product quantity updated successfully.")
+    del inventory[product_name]
+    print("Product removed successfully.")
 else:
     print("Product not found in inventory.")
 
